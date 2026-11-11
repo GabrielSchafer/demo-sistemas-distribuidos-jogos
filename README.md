@@ -39,14 +39,6 @@ cliente ──► login_server :7171          cliente ──► auth_server :372
 
 Cada caixa é um **processo separado**, e eles só conversam por **TCP** (mensagens JSON, uma por linha).
 
-## Roteiro para o vídeo (~3 min)
-
-1. **`tibia`**: mostre que login e jogo são processos diferentes, e que tudo em Antica passa por `dispatcher`. Destaque Alice e Bob clicando no mesmo item: só um pega.
-2. **`tibia --unsafe`**: o mesmo código sem a fila. As threads `worker-*` rodam em paralelo e o item duplica. É o bug que o dispatcher único evita.
-3. **`tibia --crash`**: Antica é morto à força, Inabra segue normal. Antica volta do último server save e perde a moeda pega depois dele: rollback.
-4. **`wow`**: os 4 primeiros jogadores, de dois realms, dividem um shard (CRZ). O 5º faz o roteador subir `elwynn#2` como um novo processo, e esse jogador não vê ninguém. No fim, os shards vazios são encerrados.
-
-**Dicas de gravação:** OBS Studio gravando só a janela do terminal, fonte de 18 a 20pt. Durante o `wow`, abra um segundo terminal e rode `tasklist | findstr python` (Windows) ou `ps aux | grep zone_shard` (Linux/macOS) para mostrar os processos de shard existindo de verdade.
 
 ## Problemas comuns
 
